@@ -1,0 +1,33 @@
+{
+    "places": {
+        "kyle_of_lochalsh": {
+
+        }
+    },
+    "people": {
+        "old_man_in_a_bike": {
+            "name": "Enthusiastic old man in a bike",
+            "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
+            "place": "Kyle of Lochalsh",
+            "location": [57.279933, -5.715962]
+        },
+        "sari_lady": {
+            "name": "Sari lady",
+            "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
+            "place": "Near Kyleakin",
+            "location": [57.272112, -5.745788]
+        },
+        "brigitte": {
+            "name": "Brigitte",
+            "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
+            "place": "Glendale",
+            "location": [57.443597, -6.687277]
+        },
+        "indian_famiily": {
+            "name": "Indian family",
+            "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
+            "place": "Kyle of Lochalsh",
+            "location": [57.280897, -5.715233]
+        }
+    }
+}

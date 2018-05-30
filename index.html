@@ -1,3 +1,6 @@
+---
+title: Skye
+---
 <!doctype html>
 
 <html lang="en">
@@ -28,12 +31,17 @@
     <script src="https://rawgit.com/nickpeihl/leaflet-sidebar-v2/master/js/leaflet-sidebar.js" 
         crossorigin=""></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"
+        crossorigin=""></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+        crossorigin=""></script>
 </head>
 
 <body>
-    
-  <div id="map"></div>
-
-  <script src="js/script.js"></script>
+    <div id="map"></div>
+    {% include templates.html %}
+    <script src="js/utils.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

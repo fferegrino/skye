@@ -1,0 +1,15 @@
+<script id="people-template" type="text/x-handlebars-template">
+    {% raw %}
+    {{#each people}}
+    <div class="entry">
+        <h1>{{this.name}}</h1>
+        <button data-person-id="{{@key}}" class="button locate-person"><i class="fas fa-map-marker"></i> {{place}}</button>
+        <div class="body">
+        {{this.description}}
+        </div>
+    </div>
+    {{else}}
+      <p class="empty">No content</p>
+    {{/each}}
+    {% endraw %}
+</script>

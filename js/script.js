@@ -12,7 +12,9 @@ function initMap() {
         maxZoom: 18,
         attribution: 'Map data &copy; OpenStreetMap contributors'
     }).addTo(map);
-    
+
+    peoplePane = map.createPane("people");
+
     var marker = L.marker([51.2, 7]).addTo(map);
 }
 
@@ -37,6 +39,16 @@ function loadPeople(people) {
         var location = trip["people"][data_person_id]["location"];
         centerMap(location);
     });
+    
+    for (var person_id in trip["people"]){
+        var person = trip["people"][person_id];
+        L.marker(person["location"], {
+            icon: meetIcon,
+            title: person["name"],
+            riseOnHover: true,
+            pane: 'people'
+        }).addTo(map);
+    }
 }
 
 function cleanApp(){
@@ -74,3 +86,5 @@ function centerMap(loc) {
 
 initMap();
 loadData();
+
+/* map.getPane('labels').style.display = 'none'; */

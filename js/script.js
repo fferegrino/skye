@@ -3,6 +3,10 @@ var trip;
 
 var sidebar;
 var peoplePane;
+var routesPane;
+
+var people_template = Handlebars.compile(document.getElementById("people-template").innerHTML);
+var routes_template = Handlebars.compile(document.getElementById("routes-template").innerHTML);
 
 function initMap() {
     map = L.map('map');
@@ -14,17 +18,40 @@ function initMap() {
     }).addTo(map);
 
     peoplePane = map.createPane("people");
+}
 
-    var marker = L.marker([51.2, 7]).addTo(map);
+function loadRoutes(routes) {
+    for(var route in routes) {
+        var points = routes[route]["points"];
+        var polyLine = points.map(function(point){
+            return new L.LatLng(point[0], point[1]);
+        });
+
+        var firstpolyline = new L.Polyline(polyLine, {
+            color: 'red',
+            weight: 5,
+            opacity: 0.7,
+            smoothFactor: 1
+        });
+        firstpolyline.addTo(map);
+    }
+
+    var context = {routes: routes};
+    var html = routes_template(context);
+
+    routesPane = {
+        id: 'routes',                     // UID, used to access the panel
+        tab: '<i class="fa fa-map"></i>',  // content can be passed as HTML string,
+        pane: html,        // DOM elements can be passed, too
+        title: 'Routes',              // an optional pane header
+    };
+    sidebar.addPanel(routesPane);
 }
 
 function loadPeople(people) {
-    var person_source = document.getElementById("people-template").innerHTML;
-    var template = Handlebars.compile(person_source);
-    var context = {people: trip["people"]};
-    var html = template(context);
+    var context = {people: people};
+    var html = people_template(context);
 
-    /* add a new panel */
     peoplePane = {
         id: 'people',                     // UID, used to access the panel
         tab: '<i class="fa fa-users"></i>',  // content can be passed as HTML string,
@@ -36,12 +63,12 @@ function loadPeople(people) {
     $(".locate-person").click(function(evt){
         var currentTarget = $(evt.currentTarget);
         var data_person_id = currentTarget.attr("data-person-id");
-        var location = trip["people"][data_person_id]["location"];
+        var location = people[data_person_id]["location"];
         centerMap(map, location);
     });
     
-    for (var person_id in trip["people"]){
-        var person = trip["people"][person_id];
+    for (var person_id in people){
+        var person = people[person_id];
         L.marker(person["location"], {
             icon: meetIcon,
             title: person["name"],
@@ -89,6 +116,7 @@ function loadData() {
     });
 
     loadPeople(trip["people"]);
+    loadRoutes(trip["routes"]);
 }
 
 initMap();

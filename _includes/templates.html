@@ -1,3 +1,4 @@
+<!-- People -->
 <script id="people-template" type="text/x-handlebars-template">
     <br />
     <div class="field">
@@ -21,6 +22,31 @@
                 </p>
             </div>
         </div>
+    </article>
+    <br />
+    {{else}}
+      <p class="empty">No content</p>
+    {{/each}}
+    </div>
+    {% endraw %}
+</script>
+
+<!-- Routes -->
+<script id="routes-template" type="text/x-handlebars-template">
+    <br />
+    <div class="field">
+        <div class="control">
+          <label class="checkbox">
+            <input type="checkbox" id="view_routes_chk">
+            View routes on the map
+          </label>
+        </div>
+      </div>
+    {% raw %}
+    <div class="container">
+    {{#each routes}}
+    <article class="media">
+        
     </article>
     <br />
     {{else}}

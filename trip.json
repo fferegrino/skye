@@ -27,7 +27,8 @@
             "name": "Indian family",
             "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
             "place": "Kyle of Lochalsh",
-            "location": [57.280897, -5.715233]
+            "location": [57.280897, -5.715233],
+            "date": "2018-05-27"
         }
     }
 }

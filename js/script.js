@@ -37,7 +37,7 @@ function loadPeople(people) {
         var currentTarget = $(evt.currentTarget);
         var data_person_id = currentTarget.attr("data-person-id");
         var location = trip["people"][data_person_id]["location"];
-        centerMap(location);
+        centerMap(map, location);
     });
     
     for (var person_id in trip["people"]){
@@ -49,6 +49,17 @@ function loadPeople(people) {
             pane: 'people'
         }).addTo(map);
     }
+
+    $("#view_people_chk").prop('checked', true);
+    $("#view_people_chk").change(
+        function(){
+            if ($(this).is(':checked')) {
+                map.getPane('people').style.display = 'block';
+            } else {
+                map.getPane('people').style.display = 'none';
+            }
+        });
+
 }
 
 function cleanApp(){
@@ -78,10 +89,6 @@ function loadData() {
     });
 
     loadPeople(trip["people"]);
-}
-
-function centerMap(loc) {
-    map.flyTo(new L.LatLng(loc[0], loc[1]), 18);   
 }
 
 initMap();

@@ -1,15 +1,31 @@
 <script id="people-template" type="text/x-handlebars-template">
-    {% raw %}
-    {{#each people}}
-    <div class="entry">
-        <h1>{{this.name}}</h1>
-        <button data-person-id="{{@key}}" class="button locate-person"><i class="fas fa-map-marker"></i> {{place}}</button>
-        <div class="body">
-        {{this.description}}
+    <br />
+    <div class="field">
+        <div class="control">
+          <label class="checkbox">
+            <input type="checkbox" id="view_people_chk">
+            View people on the map
+          </label>
         </div>
-    </div>
+      </div>
+    {% raw %}
+    <div class="container">
+    {{#each people}}
+    <article class="media">
+        <div class="media-content">
+            <div class="content">
+                <p>
+                    <strong>{{this.name}}</strong> <small><button data-person-id="{{@key}}" class="button link locate-person"><i class="fas fa-map-marker"></i> {{place}}</button></small> <small>{{date}}</small>
+                    <br />
+                    {{this.description}}
+                </p>
+            </div>
+        </div>
+    </article>
+    <br />
     {{else}}
       <p class="empty">No content</p>
     {{/each}}
+    </div>
     {% endraw %}
 </script>

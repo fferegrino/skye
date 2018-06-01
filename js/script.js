@@ -5,7 +5,7 @@ var sidebar;
 var peoplePane;
 var routesPane;
 
-var people_template = Handlebars.compile(document.getElementById("people-template").innerHTML);
+var pins_template = Handlebars.compile(document.getElementById("pins-template").innerHTML);
 var routes_template = Handlebars.compile(document.getElementById("routes-template").innerHTML);
 
 function initMap() {
@@ -17,7 +17,7 @@ function initMap() {
         attribution: 'Map data &copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    peoplePane = map.createPane("people");
+    
 }
 
 function loadRoutes(routes) {
@@ -48,45 +48,41 @@ function loadRoutes(routes) {
     sidebar.addPanel(routesPane);
 }
 
-function loadPeople(people) {
-    var context = {people: people};
-    var html = people_template(context);
+function loadPins(key, data) {
+    var items = data["pins"]
+    var context = {key: key, items: items};
+    var html = pins_template(context);
+    if (map.getPane(key) === undefined) {
+        map.createPane(key)
+    }
 
-    peoplePane = {
-        id: 'people',                     // UID, used to access the panel
-        tab: '<i class="fa fa-users"></i>',  // content can be passed as HTML string,
+    var peoplePanel = {
+        id: key,                     // UID, used to access the panel
+        tab: '<i class="fa fa-' + data['icon'] + '"></i>',  // content can be passed as HTML string,
         pane: html,        // DOM elements can be passed, too
-        title: 'People',              // an optional pane header
+        title: data['name'],              // an optional pane header
     };
-    sidebar.addPanel(peoplePane);
-
-    $(".locate-person").click(function(evt){
-        var currentTarget = $(evt.currentTarget);
-        var data_person_id = currentTarget.attr("data-person-id");
-        var location = people[data_person_id]["location"];
-        centerMap(map, location);
-    });
+    sidebar.addPanel(peoplePanel);
     
-    for (var person_id in people){
-        var person = people[person_id];
-        L.marker(person["location"], {
+    for (var person_id in items){
+        var item_ = items[person_id];
+        L.marker(item_["location"], {
             icon: meetIcon,
-            title: person["name"],
+            title: item_["name"],
             riseOnHover: true,
-            pane: 'people'
+            pane: key
         }).addTo(map);
     }
 
-    $("#view_people_chk").prop('checked', true);
-    $("#view_people_chk").change(
+    $("#view_" + key).prop('checked', true);
+    $("#view_"+ key).change(
         function(){
             if ($(this).is(':checked')) {
-                map.getPane('people').style.display = 'block';
+                map.getPane(key).style.display = 'block';
             } else {
-                map.getPane('people').style.display = 'none';
+                map.getPane(key).style.display = 'none';
             }
         });
-
 }
 
 function cleanApp(){
@@ -115,8 +111,20 @@ function loadData() {
         }
     });
 
-    loadPeople(trip["people"]);
-    loadRoutes(trip["routes"]);
+    for(var key in trip) {
+        obj = trip[key];
+        if (obj["type"] === "pins") {
+            loadPins(key, obj);
+        }
+    }
+
+    $(".locate-pin").click(function(evt){
+        var currentTarget = $(evt.currentTarget);
+        var data_person_id = currentTarget.attr("data-pin-id");
+        var l = currentTarget.attr("data-pin-location");
+        var location = l.split(',').map(function (v) { return parseFloat(v) });
+        centerMap(map, location);
+    });
 }
 
 initMap();

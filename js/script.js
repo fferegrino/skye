@@ -36,7 +36,7 @@ function loadRoutes(key, data) {
         });
 
         var firstpolyline = new L.Polyline(polyLine, {
-            color: 'red',
+            color: routes[route]['color'],
             weight: 5,
             opacity: 0.7,
             smoothFactor: 1,
@@ -73,7 +73,7 @@ function loadPins(key, data) {
     for (var person_id in items){
         var item_ = items[person_id];
         L.marker(item_["location"], {
-            icon: meetIcon,
+            //icon: meetIcon,
             title: item_["name"],
             riseOnHover: true,
             pane: key
@@ -91,7 +91,7 @@ function loadData() {
     trip = JSON.parse(_get("trip.json"));
 
     sidebar = L.control.sidebar({
-        autopan: true,       // whether to maintain the centered map point when opening the sidebar
+        autopan: false,       // whether to maintain the centered map point when opening the sidebar
         closeButton: true,    // whether t add a close button to the panes
         position: 'left',     // left or right
     }).addTo(map);
@@ -124,6 +124,16 @@ function loadData() {
         var location = l.split(',').map(function (v) { return parseFloat(v) });
         centerMap(map, location);
     });
+
+    $(".locate-route").click(function(evt){
+        var currentTarget = $(evt.currentTarget);
+        var data_person_id = currentTarget.attr("data-route-id");
+        var l = currentTarget.attr("data-route-bounds");
+        var location = l.split(',').map(function (v) { return parseFloat(v) });
+        centerMap(map, location);
+    });
+
+    
 
     $("input[type=checkbox]").prop('checked', true);
     $("input[type=checkbox]").change(

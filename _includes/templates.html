@@ -49,7 +49,10 @@
       <div class="media-content">
           <div class="content">
               <p>
-                  <strong>{{this.name}}</strong> <small><button data-pin-id="{{@key}}" data-pin-location="{{this.location}}" class="button link locate-pin"><i class="fas fa-map-marker"></i> {{place}}</button></small> <small>{{date}}</small>
+                  <strong>{{this.name}}</strong> <small>
+                    <button data-route-id="{{@key}}" 
+                      data-route-bounds="{{this.bounds.northeast.lat}},{{this.bounds.northeast.lng}},{{this.bounds.southwest.lat}},{{this.bounds.southwest.lng}}" 
+                      class="button link locate-route"><i class="fas fa-map-marker"></i> {{this.origin}} ⇒ {{this.destination}}</button></small><small>{{date}}</small>
                   <br />
                   {{this.description}}
               </p>

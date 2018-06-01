@@ -20,7 +20,15 @@ function initMap() {
     
 }
 
-function loadRoutes(routes) {
+function loadRoutes(key, data) {
+    var routes = data["routes"];
+    var context = {key: key, routes: routes};
+    var html = routes_template(context);
+
+    if (map.getPane(key) === undefined) {
+        map.createPane(key)
+    }
+
     for(var route in routes) {
         var points = routes[route]["points"];
         var polyLine = points.map(function(point){
@@ -31,19 +39,17 @@ function loadRoutes(routes) {
             color: 'red',
             weight: 5,
             opacity: 0.7,
-            smoothFactor: 1
+            smoothFactor: 1,
+            pane: key
         });
         firstpolyline.addTo(map);
     }
 
-    var context = {routes: routes};
-    var html = routes_template(context);
-
     routesPane = {
-        id: 'routes',                     // UID, used to access the panel
-        tab: '<i class="fa fa-map"></i>',  // content can be passed as HTML string,
+        id: key,                     // UID, used to access the panel
+        tab: '<i class="fa fa-' + data['icon'] + '"></i>',  // content can be passed as HTML string,
         pane: html,        // DOM elements can be passed, too
-        title: 'Routes',              // an optional pane header
+        title: data["name"],              // an optional pane header
     };
     sidebar.addPanel(routesPane);
 }
@@ -73,16 +79,6 @@ function loadPins(key, data) {
             pane: key
         }).addTo(map);
     }
-
-    $("#view_" + key).prop('checked', true);
-    $("#view_"+ key).change(
-        function(){
-            if ($(this).is(':checked')) {
-                map.getPane(key).style.display = 'block';
-            } else {
-                map.getPane(key).style.display = 'none';
-            }
-        });
 }
 
 function cleanApp(){
@@ -116,6 +112,9 @@ function loadData() {
         if (obj["type"] === "pins") {
             loadPins(key, obj);
         }
+        if (obj["type"] === "routes") {
+            loadRoutes(key, obj);
+        }
     }
 
     $(".locate-pin").click(function(evt){
@@ -125,6 +124,18 @@ function loadData() {
         var location = l.split(',').map(function (v) { return parseFloat(v) });
         centerMap(map, location);
     });
+
+    $("input[type=checkbox]").prop('checked', true);
+    $("input[type=checkbox]").change(
+        function(){
+            var checkbox = $(this)
+            var pane_id = checkbox.attr("data-pane-id")
+            if (checkbox.is(':checked')) {
+                map.getPane(pane_id).style.display = 'block';
+            } else {
+                map.getPane(pane_id).style.display = 'none';
+            }
+        });
 }
 
 initMap();

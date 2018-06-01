@@ -5,7 +5,7 @@
     <div class="field">
         <div class="control">
           <label class="checkbox">
-            <input type="checkbox" id="view_{{key}}">
+            <input type="checkbox" data-pane-id="{{key}}" id="view_{{key}}">
             View on the map
           </label>
         </div>
@@ -34,19 +34,27 @@
 <!-- Routes -->
 <script id="routes-template" type="text/x-handlebars-template">
     <br />
+    {% raw %}
     <div class="field">
         <div class="control">
           <label class="checkbox">
-            <input type="checkbox" id="view_routes_chk">
+            <input type="checkbox" data-pane-id="{{key}}" id="view_{{key}}">
             View routes on the map
           </label>
         </div>
       </div>
-    {% raw %}
     <div class="container">
     {{#each routes}}
     <article class="media">
-        
+      <div class="media-content">
+          <div class="content">
+              <p>
+                  <strong>{{this.name}}</strong> <small><button data-pin-id="{{@key}}" data-pin-location="{{this.location}}" class="button link locate-pin"><i class="fas fa-map-marker"></i> {{place}}</button></small> <small>{{date}}</small>
+                  <br />
+                  {{this.description}}
+              </p>
+          </div>
+      </div>
     </article>
     <br />
     {{else}}

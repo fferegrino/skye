@@ -8,6 +8,8 @@ var routesPane;
 var pins_template = Handlebars.compile(document.getElementById("pins-template").innerHTML);
 var routes_template = Handlebars.compile(document.getElementById("routes-template").innerHTML);
 
+var last_route_color;
+
 function initMap() {
     map = L.map('map');
     map.setView([57.3619, -6.24727], 10);
@@ -37,8 +39,9 @@ function loadRoutes(key, data) {
 
         var firstpolyline = new L.Polyline(polyLine, {
             color: routes[route]['color'],
-            weight: 5,
-            opacity: 0.7,
+            className: "c_" + route,
+            weight: 6,
+            opacity: 0.3,
             smoothFactor: 1,
             pane: key
         });
@@ -72,12 +75,18 @@ function loadPins(key, data) {
     
     for (var person_id in items){
         var item_ = items[person_id];
-        L.marker(item_["location"], {
-            //icon: meetIcon,
+
+        var pin_props = {
             title: item_["name"],
             riseOnHover: true,
             pane: key
-        }).addTo(map);
+        };
+        
+        if(data['icon'] in icon_dict) {
+            pin_props["icon"] = icon_dict[data['icon']]
+        }
+
+        L.marker(item_["location"], pin_props).addTo(map);
     }
 }
 
@@ -133,7 +142,24 @@ function loadData() {
         centerMap(map, location);
     });
 
-    
+    $("article[class*=route-container]").hover(function(evt){
+        var route_id = $(this).attr("data-route-id");
+
+        last_route_color = $(".c_" + route_id).css("stroke");
+        $(".c_" + route_id).css({
+            "stroke": "black",
+            "stroke-opacity": "1",
+            "z-index":100000
+        });
+
+    },function(evt){
+        var route_id = $(this).attr("data-route-id");
+        $(".c_" + route_id).css({
+            "stroke": last_route_color,
+            "stroke-opacity": "0.3",
+            "z-index":-10
+        });
+    });
 
     $("input[type=checkbox]").prop('checked', true);
     $("input[type=checkbox]").change(

@@ -17,8 +17,7 @@
             <div class="content">
                 <p>
                     <strong>{{this.name}}</strong> <small><button data-pin-id="{{@key}}" data-pin-location="{{this.location}}" class="button link locate-pin"><i class="fas fa-map-marker"></i> {{place}}</button></small> <small>{{date}}</small>
-                    <br />
-                    {{this.description}}
+                    <p>{{this.description}}</p>
                 </p>
             </div>
         </div>
@@ -45,20 +44,26 @@
       </div>
     <div class="container">
     {{#each routes}}
-    <article class="media">
-      <div class="media-content">
-          <div class="content">
-              <p>
-                  <strong>{{this.name}}</strong> <small>
-                    <button data-route-id="{{@key}}" 
-                      data-route-bounds="{{this.bounds.northeast.lat}},{{this.bounds.northeast.lng}},{{this.bounds.southwest.lat}},{{this.bounds.southwest.lng}}" 
-                      class="button link locate-route"><i class="fas fa-map-marker"></i> {{this.origin}} ⇒ {{this.destination}}</button></small><small>{{date}}</small>
-                  <br />
-                  {{this.description}}
-              </p>
-          </div>
-      </div>
-    </article>
+    <a href="#"
+      data-route-id="{{@key}}" 
+      data-route-bounds="{{this.bounds.northeast.lat}},{{this.bounds.northeast.lng}},{{this.bounds.southwest.lat}},{{this.bounds.southwest.lng}}"
+      class="locate-route">
+      <article class="media route-container" data-route-id="{{@key}}">
+        <div class="media-content">
+            <div class="content">
+                <p>
+                    <strong>{{this.name}}</strong>
+                    <br/>
+                    <small>{{this.origin}} ⇒ {{this.destination}}</small>
+                    <br />
+                    <small>{{distance.text}} - {{date}}</small>
+                    <br />
+                    <p>{{this.description}}</p>
+                </p>
+            </div>
+        </div>
+      </article>
+    </a>
     <br />
     {{else}}
       <p class="empty">No content</p>

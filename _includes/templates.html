@@ -1,6 +1,11 @@
+{% raw %}
+<!-- Panel -->
+<script id="panel-template" type="text/x-handlebars-template">
+  {{{content}}}
+</script>
+
 <!-- People -->
 <script id="pins-template" type="text/x-handlebars-template">
-  {% raw %}
     <br />
     <div class="field">
         <div class="control">
@@ -27,13 +32,11 @@
       <p class="empty">No content</p>
     {{/each}}
     </div>
-    {% endraw %}
 </script>
 
 <!-- Routes -->
 <script id="routes-template" type="text/x-handlebars-template">
     <br />
-    {% raw %}
     <div class="field">
         <div class="control">
           <label class="checkbox">
@@ -48,6 +51,9 @@
       data-route-id="{{@key}}" 
       data-route-bounds="{{this.bounds.northeast.lat}},{{this.bounds.northeast.lng}},{{this.bounds.southwest.lat}},{{this.bounds.southwest.lng}}"
       class="locate-route">
+      <div>
+        
+      </div>
       <article class="media route-container" data-route-id="{{@key}}">
         <div class="media-content">
             <div class="content">
@@ -56,7 +62,7 @@
                     <br/>
                     <small>{{this.origin}} ⇒ {{this.destination}}</small>
                     <br />
-                    <small>{{distance.text}} - {{date}}</small>
+                    <small>{{distance.text}} - {{formatTime date "MM-DD-YYYY"}}</small>
                     <br />
                     <p>{{this.description}}</p>
                 </p>
@@ -69,5 +75,5 @@
       <p class="empty">No content</p>
     {{/each}}
     </div>
-    {% endraw %}
 </script>
+{% endraw %}

@@ -7,6 +7,7 @@ var routesPane;
 
 var pins_template = Handlebars.compile(document.getElementById("pins-template").innerHTML);
 var routes_template = Handlebars.compile(document.getElementById("routes-template").innerHTML);
+var panel_template = Handlebars.compile(document.getElementById("panel-template").innerHTML);
 
 var last_route_color;
 
@@ -20,6 +21,26 @@ function initMap() {
     }).addTo(map);
 
     
+}
+
+function loadPanel(key, data) {
+
+    var result = data["content"];
+    if ("is_markdown" in data && data["is_markdown"]) {
+        var md = window.markdownit();
+        result = md.render(data["content"]);
+    }
+
+    var context = {key: key, content: result};
+    var html = panel_template(context );
+    
+    routesPane = {
+        id: key,                     // UID, used to access the panel
+        tab: '<i class="fa fa-' + data['icon'] + '"></i>',  // content can be passed as HTML string,
+        pane: html,        // DOM elements can be passed, too
+        title: data["name"],              // an optional pane header
+    };
+    sidebar.addPanel(routesPane);   
 }
 
 function loadRoutes(key, data) {
@@ -121,8 +142,11 @@ function loadData() {
         if (obj["type"] === "pins") {
             loadPins(key, obj);
         }
-        if (obj["type"] === "routes") {
+        else if (obj["type"] === "routes") {
             loadRoutes(key, obj);
+        }
+        else if (obj["type"] === "panel") {
+            loadPanel(key, obj);
         }
     }
 

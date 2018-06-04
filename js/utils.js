@@ -1,9 +1,14 @@
 // Http requests
 function _get(yourUrl){
     var Httpreq = new XMLHttpRequest(); // a new request
-    Httpreq.open("GET", yourUrl, false);
-    Httpreq.send(null);
-    return Httpreq.responseText;          
+    try {
+        Httpreq.open("GET", yourUrl, false);
+        Httpreq.send(null);
+        return Httpreq.responseText;  
+    }
+    catch(err) {
+        return "";
+    }        
 }
 
 // Map functions:
@@ -20,4 +25,15 @@ function centerMap(map, loc) {
             paddingTopLeft:  L.point(400, 0)
         });
     }
+}
+
+// https://stackoverflow.com/a/901144/605482
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
 }

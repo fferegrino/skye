@@ -9,6 +9,8 @@ var pins_template = Handlebars.compile(document.getElementById("pins-template").
 var routes_template = Handlebars.compile(document.getElementById("routes-template").innerHTML);
 var panel_template = Handlebars.compile(document.getElementById("panel-template").innerHTML);
 
+
+
 var last_route_color;
 
 function initMap() {
@@ -120,24 +122,20 @@ function cleanApp(){
 }
 
 function loadData() {
-    trip = JSON.parse(_get("trip.json"));
+    
+    var url = getParameterByName("trip") || "http://localhost:4000/trip.json";
+    json_string = _get(url);
+    if(json_string ==""){
+        alert(url + " does not contain a valid trip file");
+        return false;
+    }
+    trip = JSON.parse(json_string);
 
     sidebar = L.control.sidebar({
         autopan: false,       // whether to maintain the centered map point when opening the sidebar
         closeButton: true,    // whether t add a close button to the panes
         position: 'left',     // left or right
     }).addTo(map);
-
-    /* add an button with click listener */
-    sidebar.addPanel({
-        id: 'refresh',
-        tab: '<i class="fas fa-sync"></i>',
-        position: 'bottom',
-        button: function (event) { 
-            cleanApp();
-            loadData(); 
-        }
-    });
 
     for(var key in trip) {
         obj = trip[key];
@@ -193,6 +191,7 @@ function loadData() {
                 map.getPane(pane_id).style.display = 'none';
             }
         });
+    return true;
 }
 
 initMap();

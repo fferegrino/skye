@@ -60,7 +60,7 @@ function loadRoutes(key, data) {
 
         var firstpolyline = new L.Polyline(polyLine, {
             color: routes[route]['color'],
-            className: "c_" + route,
+            className: "route c_" + route,
             weight: 6,
             opacity: 0.3,
             smoothFactor: 1,
@@ -107,7 +107,9 @@ function loadPins(key, data) {
             pin_props["icon"] = icon_dict[data['icon']]
         }
 
-        L.marker(item_["location"], pin_props).addTo(map);
+        var pin = L.marker(item_["location"], pin_props)
+        pin.bindPopup(item_["name"]);
+        pin.addTo(map);
     }
 }
 
@@ -169,20 +171,15 @@ function loadData() {
     $("article[class*=route-container]").hover(function(evt){
         var route_id = $(this).attr("data-route-id");
 
-        last_route_color = $(".c_" + route_id).css("stroke");
-        $(".c_" + route_id).css({
-            "stroke": "black",
-            "stroke-opacity": "1",
-            "z-index":100000
-        });
+        $(".route").addClass("route-hidden");
+        $(".c_" + route_id).removeClass("route-hidden");
+        $(".c_" + route_id).addClass("route-highlighted");
 
     },function(evt){
         var route_id = $(this).attr("data-route-id");
-        $(".c_" + route_id).css({
-            "stroke": last_route_color,
-            "stroke-opacity": "0.3",
-            "z-index":-10
-        });
+        $(".route").removeClass("route-hidden");
+        $(".c_" + route_id).removeClass("route-highlighted");
+        
     });
 
     $("input[type=checkbox]").prop('checked', true);

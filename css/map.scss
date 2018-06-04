@@ -17,3 +17,11 @@ a.locate-route {
 .route-container:hover {
     background-color: #f5f5f5;
 }
+
+.route.route-hidden {
+    stroke-opacity: 0;
+}
+
+.route.route-highlighted {
+    stroke-opacity: 1;
+}

@@ -123,7 +123,7 @@ function cleanApp(){
 
 function loadData() {
     
-    var url = getParameterByName("trip") || "http://localhost:4000/trip.json";
+    var url = getParameterByName("trip") || "trip.json";
     json_string = _get(url);
     if(json_string ==""){
         alert(url + " does not contain a valid trip file");

@@ -21,8 +21,8 @@
         <div class="media-content">
             <div class="content">
                 <p>
-                    <strong>{{this.name}}</strong> <small><button data-pin-id="{{@key}}" data-pin-location="{{this.location}}" class="button link locate-pin"><i class="fas fa-map-marker"></i> {{place}}</button></small> <small>{{date}}</small>
-                    <p>{{this.description}}</p>
+                    <strong>{{this.name}}</strong> <small><button data-pin-id="{{@key}}" data-pin-location="{{this.location}}" class="button link locate-pin"><i class="fas fa-map-marker"></i></button></small> <small></small>
+                    {{#if this.description}}<p>{{{markdown this.description}}}</p>{{/if}}
                 </p>
             </div>
         </div>
@@ -64,7 +64,7 @@
                     <br />
                     <small>{{distance.text}} - {{formatTime date "MM-DD-YYYY"}}</small>
                     <br />
-                    <p>{{this.description}}</p>
+                    {{#if this.description}}<p>{{{markdown this.description}}}</p>{{/if}}
                 </p>
             </div>
         </div>

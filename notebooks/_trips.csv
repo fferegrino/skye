@@ -1,29 +1,29 @@
-﻿name,origin_lat,origin_long,destination_lat,destination_long,mode,our_mode,description,date
-Bus to Broadford,57.064203,-5.895865,57.24329,-5.914485,driving,bus,,26/05/2018
-Attempt to walk to Kyle of Lochalsh,57.241108,-5.90677,57.236112,-5.872315,walking,walking,can't recall until where we walked,26/05/2018
-Airbnb ride!,57.236112,-5.872315,57.285388,-5.71513,driving,hitchhiking,,26/05/2018
+﻿name,origin_lat,origin_long,destination_lat,destination_long,mode,our_mode,previous_trip,date
+Bus to Broadford,57.064203,-5.895865,57.243293,-5.914546,driving,bus,,26/05/2018
+Attempt to walk to Kyle of Lochalsh,57.241108,-5.90677,57.236112,-5.872315,walking,walking,,26/05/2018
+Airbnb lady,57.236112,-5.872315,57.285388,-5.71513,driving,hitchhiking,,26/05/2018
 Indian family,57.2809,-5.714679,57.272675,-5.74427,driving,hitchhiking,,27/05/2018
-Sari lady,57.272379,-5.74501,57.235735,-5.872168,driving,hitchhiking,,27/05/2018
+Sari skirt lady,57.272379,-5.74501,57.235735,-5.872168,driving,hitchhiking,,27/05/2018
 Walk to Broadford,57.235735,-5.872168,57.24384,-5.916736,walking,walking,,27/05/2018
-Indian family part two,57.244074,-5.918171,57.313769,-6.1087,driving,hitchhiking,,27/05/2018
+Indian family part two,57.244074,-5.918171,57.313769,-6.1087,driving,hitchhiking,Indian family,27/05/2018
 Bus to Portree,57.313311,-6.110942,57.412811,-6.194039,driving,bus,,27/05/2018
 Dirty car guy,57.414019,-6.203505,57.457729,-6.326859,driving,hitchhiking,,27/05/2018
 Kayak guy,57.45789,-6.327068,57.435819,-6.580038,driving,hitchhiking,,27/05/2018
-Kayak guy part two,57.435819,-6.580038,57.431499,-6.57247,driving,hitchhiking,,27/05/2018
-Walk towards Glendale,57.431499,-6.57247,57.421723,-6.589142,walking,walking,not sure about the desination,27/05/2018
-French couple ride,57.421723,-6.589142,57.448162,-6.690086,driving,hitchhiking,not sure about the origin,27/05/2018
-Walk to Neist Point ,57.443549,-6.687216,57.439725,-6.758266,walking,walking,not sure about where we were picked up,27/05/2018
-Welsh couple ride,57.439725,-6.758266,57.429751,-6.778865,driving,hitchhiking,,27/05/2018
-Welsh couple ride part two,57.429751,-6.778865,57.448102,-6.689854,driving,hitchhiking,,27/05/2018
+Kayak guy part two,57.435819,-6.580038,57.431499,-6.57247,driving,hitchhiking,Kayak guy,27/05/2018
+Walk towards Glendale,57.431499,-6.57247,57.421723,-6.589142,walking,walking,,27/05/2018
+French couple,57.421723,-6.589142,57.448162,-6.690086,driving,hitchhiking,,27/05/2018
+Walk to Neist Point ,57.443549,-6.687216,57.439725,-6.758266,walking,walking,,27/05/2018
+Welsh couple,57.439725,-6.758266,57.429751,-6.778865,driving,hitchhiking,,27/05/2018
+Welsh couple part two,57.429751,-6.778865,57.448102,-6.689854,driving,hitchhiking,Welsh couple,27/05/2018
 Walk to Dunvegan,57.443535,-6.687278,57.448681,-6.650228,walking,walking,,28/05/2018
-Old man,57.448681,-6.650228,57.424604,-6.597651,driving,hitchhiking,,28/05/2018
+Scottish old man,57.448681,-6.650228,57.424604,-6.597651,driving,hitchhiking,,28/05/2018
 Scottish couple,57.423269,-6.594023,57.447795,-6.586773,driving,hitchhiking,,28/05/2018
 Walking to Coral Beach,57.447795,-6.586773,57.462436,-6.603583,walking,walking,,28/05/2018
 Three friends ride,57.462436,-6.603583,57.489064,-6.620109,driving,hitchhiking,,28/05/2018
 Walk to Dunvegan Castle,57.500781,-6.636351,57.477393,-6.618571,walking,walking,,28/05/2018
-Holland family ride,57.477393,-6.618571,57.436434,-6.58096,driving,hitchhiking,,28/05/2018
-"""Friends"" ride",57.436502,-6.579325,57.451412,-6.263793,driving,hitchhiking,,28/05/2018
+Holland family,57.477393,-6.618571,57.436434,-6.58096,driving,hitchhiking,,28/05/2018
+"""Friends""",57.436502,-6.579325,57.451412,-6.263793,driving,hitchhiking,,28/05/2018
 Walk to Portree ,57.451069,-6.262029,57.412787,-6.194252,walking,walking,,28/05/2018
-Rich couple ride,57.411064,-6.201455,57.280531,-5.716287,driving,hitchhiking,,28/05/2018
+Rich couple in the Fancy car,57.411064,-6.201455,57.280531,-5.716287,driving,hitchhiking,,28/05/2018
 Walk to Kyleakin,57.280194,-5.71386,57.272466,-5.730743,walking,walking,,28/05/2018
 Walk to Kyle of Lochalsh,57.272466,-5.730743,57.280194,-5.71386,walking,walking,,29/05/2018

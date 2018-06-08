@@ -17727,12 +17727,19 @@
         "pins": {
             "oily_fish": {
                 "name": "Oily fish",
-                "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
-                "place": "Mallaig",
                 "location": [
-                    57.005387,
-                    -5.829039
-                ]
+                    57.005424,
+                    -5.828959
+                ],
+                "description": " - Salty and delicious  \n - Wow, I wasn't expecting that"
+            },
+            "scallops": {
+                "name": "Scallops",
+                "location": [
+                    57.413255,
+                    -6.194064
+                ],
+                "description": " - Wasn't expecting this either"
             }
         }
     },

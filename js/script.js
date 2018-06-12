@@ -117,6 +117,7 @@ function loadPins(key, data) {
 
 function cleanApp(){
     if (typeof sidebar !== 'undefined') {
+        
         sidebar.remove();
     }
 }
